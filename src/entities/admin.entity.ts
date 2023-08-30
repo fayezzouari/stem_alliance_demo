@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Teacher } from './teacher.entity';
 @Entity('admins')
 export class Admin {
   @PrimaryGeneratedColumn()
@@ -13,4 +14,7 @@ export class Admin {
 
   @Column()
   password: string;
+
+  @OneToMany(() => Teacher, (teacher) => teacher.admin, { cascade: true })
+  teacher: Teacher[];
 }

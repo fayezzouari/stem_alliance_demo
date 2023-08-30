@@ -4,6 +4,7 @@ import { Admin } from './entities/admin.entity';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { JwtModule } from '@nestjs/jwt';
+import { Teacher } from './entities/teacher.entity';
 
 @Module({
   imports: [
@@ -14,10 +15,10 @@ import { JwtModule } from '@nestjs/jwt';
       username: 'root',
       password: '',
       database: 'stem_alliance',
-      entities: [Admin],
+      entities: [Admin, Teacher],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Admin]),
+    TypeOrmModule.forFeature([Admin, Teacher]),
     JwtModule.register({
       secret: 'secret',
       signOptions: { expiresIn: '1d' },
